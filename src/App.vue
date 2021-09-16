@@ -1,32 +1,31 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+    <v-app>
+        <v-container class="pt-8">
+            <v-app-bar class="white elevation-15 rounded-lg px-2">
+                <v-app-bar-title>
+                    <router-link to="/" class="headline font-weight-bold text-decoration-none black--text">Цитаты</router-link>
+                </v-app-bar-title>
+                <v-spacer></v-spacer>
+                <create-quote></create-quote>
+            </v-app-bar>
+        </v-container>
+        <v-main class="mt-8">
+            <router-view></router-view>
+        </v-main>
+    </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import CreateQuote from './components/CreateQuote.vue';
+export default {
+    components: {
+        CreateQuote
+    },
 }
+</script>
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+<style>
+.v-card__title{
+    word-break: break-word !important;
 }
 </style>
