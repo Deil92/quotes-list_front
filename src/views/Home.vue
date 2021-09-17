@@ -102,6 +102,7 @@
                     page = 1;
                 }
             }
+            this.localPage = page;
             this.$store.dispatch('updateQuotes', page);
         }
     }
