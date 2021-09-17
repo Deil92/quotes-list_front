@@ -32,6 +32,8 @@ export default new Vuex.Store({
                 const maxPage = jsonRes.maxpage;
                 if(page > maxPage){
                     context.commit('updatePage', maxPage);
+                }else if(page < 1){
+                    context.commit('updatePage', 1);
                 }else{
                     context.commit('updatePage', page);
                 }
