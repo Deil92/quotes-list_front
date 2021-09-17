@@ -39,7 +39,7 @@
             </v-chip>
             </v-card-text>
             <v-card-text class="pt-1">
-                <v-btn :to="{ name: 'Quote', params: { id: q.id } }" plain color="green" outlined>
+                <v-btn :to="{ name: 'Quote', params: { id: q.id, page: page } }" plain color="green" outlined>
                     Открыть
                 </v-btn>
             </v-card-text>

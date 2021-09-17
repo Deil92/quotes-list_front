@@ -12,6 +12,7 @@ const routes = [
   {
     path: '/quote/:id',
     name: 'Quote',
+    props: true,
     component: () => import('@/views/Quote.vue')
   },
   {

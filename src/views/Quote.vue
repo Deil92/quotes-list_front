@@ -53,7 +53,7 @@
                     </v-chip>
             </v-card-text>
             <v-card-text class="pt-1">
-                <v-btn to="/" plain color="green" outlined>
+                <v-btn :to="{ name: 'Home', query: { page: page }}" plain color="green" outlined>
                     Вернуться
                 </v-btn>
             </v-card-text>
@@ -70,10 +70,13 @@
         components: {
             DateFormat
         },
+        props:{
+            id: Number,
+            page: Number
+        },
         data() {
             return {
                 quote: null,
-                page: null,
                 maxPage: null,
                 error: null
             }
