@@ -3,7 +3,7 @@
         <v-container class="pt-8">
             <v-app-bar class="white elevation-15 rounded-lg px-2">
                 <v-app-bar-title>
-                    <router-link to="/" class="headline font-weight-bold text-decoration-none black--text">Цитаты</router-link>
+                    <router-link to="/?page=1" class="headline font-weight-bold text-decoration-none black--text">Цитаты</router-link>
                 </v-app-bar-title>
                 <v-spacer></v-spacer>
                 <create-quote></create-quote>

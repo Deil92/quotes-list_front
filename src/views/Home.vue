@@ -45,7 +45,7 @@
             </v-card-text>
         </v-card>
         <v-pagination
-              v-model="page"
+              v-model="localPage"
               class="mt-16 mb-4"
               color="green"
               :length="maxPage"
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-    import { getQuotesOnPage } from '../api';
+    //import { getQuotesOnPage } from '../api';
     import DateFormat from '../components/DateFormat';
     export default {
         name: 'Home',
@@ -64,42 +64,45 @@
         },
         data() {
             return {
-                quotes: [],
-                page: null,
-                maxPage: null,
+                localPage: 1,
+            }
+        },
+        computed: {
+            quotes() {
+                return this.$store.state.quotes;
+            },
+            page() {
+                return this.$store.state.page;
+            },
+            maxPage() {
+                return this.$store.state.maxPage;
             }
         },
         watch:{
+            localPage(){
+                this.$store.dispatch('updateQuotes', this.localPage);
+            },
             page(){
-                this.quotes = [];
+                this.localPage = this.page;
                 window.history.pushState(
                     null,
                     document.title,
                     `${window.location.pathname}?page=${this.page}`
                 );
-                getQuotesOnPage(this.page).then((result) => {
-                    const jsonRes = result.data;
-                    this.quotes = jsonRes.quotes;
-                    this.maxPage = jsonRes.maxpage;
-                    if(this.page > this.maxPage){
-                        this.page = this.maxPage;
-                    }
-                });
             }
         },
         mounted() {
             const windowData = Object.fromEntries(
                 new URL(window.location).searchParams.entries()
             );
-            this.page = windowData['page'] ? parseInt(windowData['page']) : 1;
+            let page = 1;
             if(windowData['page']) {
-                let page = parseInt(windowData['page']);
+                page = parseInt(windowData['page']);
                 if(page < 1 || isNaN(page)){
-                    this.page = 1;
-                }else{
-                    this.page = page;
+                    page = 1;
                 }
             }
+            this.$store.dispatch('updateQuotes', page);
         }
     }
 </script>

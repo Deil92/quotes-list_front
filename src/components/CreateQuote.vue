@@ -138,9 +138,13 @@
                             this.quote = '';
                             this.value = [];
                             this.dialog = false;
-                            this.$router.go()
+                            this.$store.dispatch('updateQuotes', 1);
+                            if(this.$route.path != '/'){
+                                this.$router.push('/');
+                            }
                         }
                     }).catch((err) => {
+                        console.log(err);
                         if(err.response.status == 400){
                             this.error = "Заполните поля";
                             return;
